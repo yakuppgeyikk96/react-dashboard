@@ -1,0 +1,11 @@
+.dashboard-container {
+  display: flex;
+}
+
+.right-container {
+  flex: 1;
+}
+
+main {
+  padding: 1rem;
+}
