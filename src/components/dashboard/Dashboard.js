@@ -9,12 +9,15 @@ import Tasks from '../../pages/Tasks';
 import Chat from '../../pages/Chat';
 import Meetings from '../../pages/Meetings';
 import Projects from '../../pages/Projects';
+import { getAllTasks } from '../services/taskService';
 
 export const SidebarOpened = createContext();
 
 const Dashboard = (props) => {
   const navbarTitles = ['Home', 'Projects', 'Tasks'];
   const [sidebarOpened, setSidebarOpened] = useState(false);
+
+  getAllTasks().then((res) => console.log(res.data));
 
   return (
     <div className="dashboard-container">

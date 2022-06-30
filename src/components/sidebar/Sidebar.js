@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { SidebarOpened } from '../dashboard/Dashboard';
 import ListItem from './ListItem';
 import logo from '../../icons/logo.png';
 import './Sidebar.css';
 
 const Sidebar = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const sidebarItems = [
     {
       title: 'Dashboard',
@@ -54,7 +55,14 @@ const Sidebar = () => {
         <ul>
           {sidebarItems.map((item, index) => (
             <li key={index}>
-              <ListItem title={item.title} icon={item.icon} to={item.to} />
+              <ListItem
+                onClicked={(e) => setActiveIndex(e)}
+                index={index}
+                title={item.title}
+                icon={item.icon}
+                to={item.to}
+                active={activeIndex === index}
+              />
             </li>
           ))}
         </ul>

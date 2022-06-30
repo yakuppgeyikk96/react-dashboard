@@ -5,7 +5,11 @@
   padding: 1rem;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: all .5s;
+  transition: all 0.5s;
+}
+
+.active {
+  background-color: #f1e7fa;
 }
 
 .list-item:hover {

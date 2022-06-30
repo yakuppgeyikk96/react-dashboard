@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './ListItem.css';
 
 const ListItem = (props) => {
   return (
-    <Link to={props.to}>
-      <div className="list-item">
+    <NavLink to={props.to} style={{ textDecoration: 'none' }}>
+      <div
+        className={`list-item ${props.active ? 'active' : ''}`}
+        onClick={() => props.onClicked(props.index)}
+      >
         <div className="list-item-icon">
           <img
             width={24}
@@ -14,7 +17,7 @@ const ListItem = (props) => {
         </div>
         <div className="list-item-text">{props.title}</div>
       </div>
-    </Link>
+    </NavLink>
   );
 };
 
