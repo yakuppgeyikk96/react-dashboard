@@ -1,6 +1,6 @@
 .list-item {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem;
   font-size: 1.1rem;

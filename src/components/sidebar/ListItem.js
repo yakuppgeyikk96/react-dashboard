@@ -6,45 +6,30 @@ import { SidebarOpened } from '../dashboard/Dashboard'
 const ListItem = (props) => {
   const iconRef = useRef()
   const [showIconTitle, setShowIconTitle] = useState(false)
-  const [sidebarOpened, _] = useContext(SidebarOpened)
+  const [sidebarOpened] = useContext(SidebarOpened)
 
-  const handleMouseEnterCallback = useCallback(() => setShowIconTitle(true))
-  const handleMouseLeaveCallback = useCallback(() => setShowIconTitle(false))
+  const handleMouseEnter = useCallback(() => setShowIconTitle(true), [])
+  const handleMouseLeave = useCallback(() => setShowIconTitle(false), [])
+
   useEffect(() => {
     if (!sidebarOpened) {
-      iconRef.current.addEventListener(
-        'mouseenter',
-        handleMouseEnterCallback,
-        true
-      )
-      iconRef.current.addEventListener(
-        'mouseleave',
-        handleMouseLeaveCallback,
-        true
-      )
+      iconRef.current.addEventListener('mouseenter', handleMouseEnter)
+      iconRef.current.addEventListener('mouseleave', handleMouseLeave)
     } else {
-      console.log('A')
-      iconRef.current.removeEventListener(
-        'mouseenter',
-        handleMouseEnterCallback,
-        true
-      )
+      iconRef.current.removeEventListener('mouseenter', handleMouseEnter)
 
-      iconRef.current.removeEventListener(
-        'mouseleave',
-        handleMouseLeaveCallback,
-        true
-      )
+      iconRef.current.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [sidebarOpened, handleMouseEnterCallback, handleMouseLeaveCallback])
+  }, [sidebarOpened, handleMouseEnter, handleMouseLeave])
 
   return (
     <NavLink to={props.to} style={{ textDecoration: 'none' }}>
       <div
         className={`list-item ${props.active ? 'active' : ''}`}
         onClick={() => props.onClicked(props.index)}
+        ref={iconRef}
       >
-        <div className='list-item-icon' ref={iconRef}>
+        <div className='list-item-icon'>
           <img
             width={24}
             src={require(`../../icons/${props.icon}.png`)}
